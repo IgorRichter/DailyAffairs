@@ -1,1 +1,1 @@
-# [Pet-project «DailyAffairs»](https://htmlacademy-adaptive.github.io/2408769-cat-energy-30/)
+# [Pet-project «DailyAffairs»](https://igorrichter.github.io/DailyAffairs/)
