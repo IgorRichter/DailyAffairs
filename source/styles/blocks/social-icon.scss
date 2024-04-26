@@ -1,0 +1,31 @@
+.social-icon {
+  &::before {
+    content: "";
+    display: block;
+    border-radius: 8px;
+    background-color: rgba($background-color, 0.1);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
+
+  &--telegram::before {
+    background-image: url("../../icons/stack.svg#icon-telegram");
+  }
+
+  &--github::before {
+    background-image: url("../../icons/stack.svg#icon-github");
+  }
+
+  &--email::before {
+    background-image: url("../../icons/stack.svg#icon-email");
+    background-color: rgba($background-color, 0.2);
+  }
+
+  @media (min-width: $tablet-width) {
+    background-size: 32px;
+  }
+}

@@ -1,0 +1,36 @@
+.social-media__list {
+  display: flex;
+  justify-content: end;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  @media (min-width: $tablet-width) {
+    gap: 25px;
+  }
+}
+
+.social-media__item {
+  display: inline-flex;
+}
+
+.social-media__link {
+  display: inline-flex;
+  color: $basic-black;
+
+  &:hover,
+  &:focus-visible {
+    color: $basic-white;
+  }
+
+  &:active {
+    color: $basic-white;
+    opacity: 0.5;
+  }
+
+  @media (min-width: $desktop-width) {
+    & svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

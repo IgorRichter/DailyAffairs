@@ -1,0 +1,150 @@
+.main-nav {
+  display: block;
+  box-sizing: border-box;
+  padding: 100px 0 20px;
+  width: 100%;
+
+  &--open {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &--closed {
+    display: none;
+  }
+
+  @media (min-width: $tablet-width) {
+    display: flex;
+    justify-content: space-evenly;
+    position: static;
+    padding: unset;
+  }
+}
+
+.main-nav__list {
+  @media (min-width: $tablet-width) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    max-width: 65%;
+  }
+}
+
+.main-nav__user-list {
+  margin-top: 60px;
+
+  @media (min-width: $tablet-width) {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+}
+
+.main-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: rgba($basic-white, 0.1);
+  border-radius: 12px;
+  margin-bottom: 12px;
+
+  @media (min-width: $tablet-width) {
+    background-color: unset;
+    border-radius: unset;
+    margin-bottom: unset;
+  }
+}
+
+.main-nav__link {
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 20px;
+  position: relative;
+
+  &--icon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (min-width: $tablet-width) {
+      display: unset;
+    }
+
+    @media (min-width: $desktop-width) {
+      // border-right: 1px solid $basic-white;
+      // margin-right: 10px;
+    }
+  }
+
+  &--start {
+    text-align: center;
+    background-color: #83008b;
+    border-radius: 12px;
+
+    @media (min-width: $tablet-width) {
+      border-radius: 8px;
+
+      &:hover,
+      &:focus-visible {
+        background-color: $basic-white;
+      }
+
+      &:active {
+        background-color: $basic-white;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $background-color-2;
+
+    @media (min-width: $tablet-width) {
+      color: $secondary-color;
+    }
+
+    @media (min-width: $desktop-width) {
+      background-color: rgba($background-color-2, 0.5);
+      border-radius: 12px;
+    }
+  }
+
+  &:active {
+    color: $background-color-2;
+    opacity: 0.6;
+
+    @media (min-width: $tablet-width) {
+      color: $secondary-color;
+    }
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 28px;
+    padding: 5px 10px;
+
+    &--icon svg {
+      display: none;
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
+    line-height: 36px;
+  }
+}
+
+.main-nav__partition {
+  @media (min-width: $desktop-width) {
+    width: 2px;
+    height: 50px;
+    background-color: $basic-white;
+    margin: 0 20px;
+  }
+}

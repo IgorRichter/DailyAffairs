@@ -1,0 +1,31 @@
+.button-toogle {
+  display: none;
+  border: 0;
+  height: 30px;
+  width: 30px;
+  background-color: $transparent;
+  background-image: url("../../icons/stack.svg#burger");
+  background-position: center;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &--visible {
+    display: block;
+  }
+
+  &--close {
+    display: block;
+    background-image: url("../../icons/stack.svg#close");
+    transform: rotate(90deg);
+
+    @media (min-width: $tablet-width) {
+      display: none;
+    }
+  }
+
+  @media (min-width: $tablet-width) {
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+/* GLOBAL */
+@import "./common/variables.scss";
+@import "./common/mixins.scss";
+@import "./common/fonts.scss";
+@import "./common/global.scss";
+@import "./common/utils.scss";
+@import "./common/visually-hidden.scss";
+
+/* BLOCKS */
+@import "./blocks/link.scss";
+@import "./blocks/button.scss";
+@import "./blocks/title.scss";
+@import "./blocks/list.scss";
+@import "./blocks/container.scss";
+@import "./blocks/main-header.scss";
+@import "./blocks/main-nav.scss";
+@import "./blocks/button-toogle.scss";
+@import "./blocks/main-index.scss";
+@import "./blocks/hero.scss";
+@import "./blocks/word-line.scss";
+@import "./blocks/optimization.scss";
+@import "./blocks/advantages.scss";
+@import "./blocks/advantages-card.scss";
+@import "./blocks/demo.scss";
+@import "./blocks/feedback.scss";
+@import "./blocks/social-card.scss";
+@import "./blocks/social-icon.scss";
+@import "./blocks/blur-background.scss";
+@import "./blocks/main-footer.scss";
+@import "./blocks/social-media.scss";

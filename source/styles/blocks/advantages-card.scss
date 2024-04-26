@@ -1,0 +1,77 @@
+.advantages-card {
+  margin-bottom: 16px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: unset;
+  }
+}
+
+.advantages-card__title {
+  display: flex;
+  color: $primary-color;
+  margin-bottom: 5px;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 8px;
+
+    @media (min-width: $tablet-width) {
+      width: 32px;
+      height: 32px;
+      margin-right: 16px;
+    }
+  }
+
+  &--simple::before {
+    background: url("../../icons/stack.svg#simple");
+  }
+
+  &--notes::before {
+    background: url("../../icons/stack.svg#notes");
+  }
+
+  &--plan::before {
+    background: url("../../icons/stack.svg#plan");
+  }
+
+  &--group::before {
+    background: url("../../icons/stack.svg#group");
+  }
+
+  &--productive::before {
+    background: url("../../icons/stack.svg#productive");
+  }
+
+  &--priority::before {
+    background: url("../../icons/stack.svg#priority");
+  }
+
+  &--notification::before {
+    background: url("../../icons/stack.svg#notification");
+  }
+
+  &--help::before {
+    background: url("../../icons/stack.svg#help");
+  }
+
+  &--support::before {
+    background: url("../../icons/stack.svg#support");
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 12px;
+  }
+}
+
+.advantages-card__description {
+  text-align: start;
+  color: rgba($basic-white, 0.7);
+}
