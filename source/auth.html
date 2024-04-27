@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Войти в DailyAffairs</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preload" href="/fonts/ptmono.woff2" as="font">
+    <link rel="preload" href="/fonts/ptmonobold.woff2" as="font">
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="favicons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicons/apple.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/index.js" defer></script>
+  </head>
+<body>
+  <div class="app">
+    <header class="auth-header">
+      <div class="container">
+        <div class="auth-header__logo-img">
+          <a class="auth-header__link link" href="index.html">
+            <picture>
+              <source media="(min-width: 1200px)" type="image/svg+xml" srcset="images/main-logo.svg" width="245" height="75">
+              <source media="(min-width: 768px)" type="image/svg+xml" srcset="images//main-logo.svg" width="190" height="75">
+              <img src="images/main-logo.svg" width="130" height="35" alt="Логотип DailyAffairs">
+            </picture>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="main-auth">
+      <div class="container">
+        <section class="auth">
+          <div class="auth__wrapper-form">
+            <h1 class="auth__title title title--md">Войти</h1>
+            <form class="auth__form form" action="#" method="get">
+              <div class="form__wrapper-section">
+                <fieldset class="form__fieldset">
+                  <legend class="visually-hidden">Форма авторизации</legend>
+                  <label class="form__label">
+                    <input class="form__input" placeholder="Email" type="email" name="email" required>
+                  </label>
+                  <label class="form__label form__label--password">
+                    <input class="form__input form_input" placeholder="Пароль" type="text" name="password" required>
+                    <button class="form__password-bth" type="button"></button>
+                  </label>
+                </fieldset>
+                <div class="auth__wrapper-button">
+                  <button class="auth__button button button--primary" type="submit">Войти</button>
+                </div>
+                <div class="auth__clue-wrapper">
+                  <span class="auth_clue">Еще нет аккаунта? <a class="auth__clue-link" href="#">Зарегистроваться</a></span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="auth__wrapper-image">
+            <picture>
+              <img src="images/example.png" width="500" height="400">
+            </picture>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

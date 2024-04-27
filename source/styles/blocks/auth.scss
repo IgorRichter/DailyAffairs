@@ -1,0 +1,76 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+}
+
+.auth__wrapper-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.auth__title {
+  line-height: 36px;
+
+  @media (min-width: $tablet-width) {
+    line-height: 48px;
+  }
+}
+
+.auth__wrapper-image {
+  display: none;
+
+  @media (min-width: $desktop-width) {
+    display: block;
+  }
+}
+
+.auth__wrapper-button {
+  display: flex;
+  justify-content: center;
+}
+
+.auth__button {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: unset;
+  color: $basic-white;
+  font-size: 18px;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: unset;
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 20px;
+  }
+}
+
+.auth__clue-wrapper {
+  text-align: center;
+}
+
+.auth__clue-link {
+  color :$secondary-color;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+  
+  @media (min-width: $tablet-width) {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,70 @@
+.form__wrapper-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  @media (min-width: $tablet-width) {
+    gap: 30px;
+  }
+}
+
+.form__fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  @media (min-width: $tablet-width) {
+    gap: 30px;
+  }
+}
+
+.form__label {
+  &--password {
+    position: relative;
+  }
+}
+
+.form__password-bth {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  transform: translateY(-50%);
+  border: 0;
+  background: $transparent;
+  cursor: pointer;
+  background-image: url("../../icons/stack.svg#eye-open");
+  background-size: 20px;
+
+  &--closed {
+    background-image: url("../../icons/stack.svg#eye-closed");
+  }
+}
+
+.form__input {
+  padding: 15px;
+  color: $basic-white;
+  font-size: 20px;
+  width: 100%;
+  background-color: $transparent;
+  border-radius: 12px;
+  border: 1px solid  $basic-white;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: $secondary-color;
+    opacity: 1;
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 22px;
+  }
+}
