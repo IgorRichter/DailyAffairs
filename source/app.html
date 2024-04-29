@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>DailyAffairs</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preload" href="/fonts/ptmono.woff2" as="font">
+    <link rel="preload" href="/fonts/ptmonobold.woff2" as="font">
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="favicons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicons/apple.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/main.js" type="module" defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="app-header__title title title--md">Панель</h1>
+    </header>
+    <div class="sidebar">
+      <div class="sidebar__nav">
+        <header class="sidebar__header">
+          <div class="sidebar__user-nav">
+            <button type="button" class="sidebar__user-button">
+              <img class="sidebar__avatar" src="./images/example.png" alt="Аватар" id="avatar-image" width="35" height="35">
+              <span class="sidebar__name-info">illuzz</span>
+              <span class="sidebar__email-info">i.rixter35413@gmail.com</span>
+            </button>
+            <div class="sidebar__dropdown-menu">
+              <div class="dropdown-menu">
+                <div class="dropdown-menu__item dropdown-menu__item--notification">Уведомление</div>
+                <div class="dropdown-menu__item dropdown-menu__item--settings">Настройки</div>
+                <button type="button" class="dropdown-menu__item dropdown-menu__item--language dropdown-menu__item--arrow">Язык</button>
+                <div class="dropdown-menu__submenu-wrapper">
+                  <ul class="dropdown-menu__submenu list">
+                    <li class="dropdown-menu__subparagraph">En</li>
+                    <li class="dropdown-menu__subparagraph">Ru</li>
+                  </ul>
+                </div>
+                <div class="dropdown-menu__item dropdown-menu__item--theme">Тема</div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar__bth-wrapper">
+            <button class="sidebar__button" type="button" aria-label="Открыть/закрыть боковую панель"></button>
+          </div>
+        </header>
+        <nav class="nav">
+          <ul class="nav__list list">
+            <li class="nav__item">
+              <a class="nav__link link" href="#">Панель</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link link" href="#">Задачи</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link link" href="#">Проекты</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link link" href="#">Календарь</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="exit">
+          <button class="exit__button" type="button">Выход</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

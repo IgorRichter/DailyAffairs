@@ -1,0 +1,35 @@
+.exit {
+  padding: 30px 30px 0;
+  margin-top: auto;
+  margin-bottom: 30px;
+}
+
+.exit__button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: $transparent;
+  border: 0;
+  font-size: 20px;
+  line-height: 28px;
+  color: $basic-white;
+  cursor: pointer;
+  padding: 5px;
+
+  &::before {
+    content: "";
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    background-image: url("../../icons/stack.svg#logout");
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
+    border-radius: 8px;
+  }
+}
