@@ -1,7 +1,6 @@
 .exit {
-  padding: 30px 30px 0;
+  padding: 30px;
   margin-top: auto;
-  margin-bottom: 30px;
 }
 
 .exit__button {
@@ -10,7 +9,7 @@
   gap: 10px;
   background-color: $transparent;
   border: 0;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 28px;
   color: $basic-white;
   cursor: pointer;

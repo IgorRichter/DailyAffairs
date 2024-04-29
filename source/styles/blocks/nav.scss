@@ -5,12 +5,53 @@
 
 .nav__list {
   margin-bottom: auto;
-}
-
-.nav__item {
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .nav__link {
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: $basic-white;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
+    border-radius: 8px;
+  }
+
+  & svg {
+    margin-right: 15px;
+  }
+
+  &--dashboard::before {
+    background-image: url("../../icons/stack.svg#dashboard");
+  }
+
+  &--task::before {
+    background-image: url("../../icons/stack.svg#task");
+  }
+
+  &--project::before {
+    background-image: url("../../icons/stack.svg#project");
+  }
+
+  &--calendar::before {
+    background-image: url("../../icons/stack.svg#calendar");
+  }
+
+  &--active {
+    background-color: rgba($secondary-color, 0.3);
+    border-radius: 8px;
+    color: $secondary-color;
+
+    
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($secondary-color, 0.3);
+    }
+  }
 }
