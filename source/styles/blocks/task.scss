@@ -1,0 +1,142 @@
+.task {
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 1px;
+    opacity: 0.6;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    background-color: $basic-white;
+  }
+
+  &:hover .task__edit-wrapper,
+  &:focus-visible .task__edit-wrapper {
+    opacity: 1;
+  }
+
+  &--completed {
+    opacity: 0.5;
+
+    & .task__edit-wrapper {
+      display: none;
+    }
+  }
+}
+
+.task__wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+.task__info-expired {
+  color: $priority1;
+  font-size: 14px;
+}
+
+.task__edit-wrapper {
+  display: flex;
+  gap: 10px;
+  height: 15px;
+  opacity: 0;
+}
+
+.task__button {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.task__button-select {
+  border: 0;
+  background-color: $transparent;
+  padding: 0;
+  color: $basic-white;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+
+  &--edit {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($basic-gray, 0.5);
+    }
+  }
+
+  & .task__circle svg {
+    opacity: 0;
+  }
+
+  &:hover .task__circle svg,
+  &:focus-visible .task__circle svg {
+    opacity: 1;
+  }
+}
+
+.task__circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid $basic-white;
+  margin: 5px;
+
+  &--priority1 {
+    border-color: $priority1;
+    color: $priority1;
+    background-color: rgba($priority1, 0.1);
+  }
+
+  &--priority2 {
+    border-color: $priority2;
+    color: $priority2;
+    background-color: rgba($priority2, 0.1);
+  }
+
+  &--priority3 {
+    border-color: $priority3;
+    color: $priority3;
+    background-color: rgba($priority3, 0.1);
+  }
+}
+
+.task__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  width: 75%;
+  margin-right: 15px;
+  word-break: break-all;
+}
+
+.task__data-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task__rigthside {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.task__project-wrapper {
+  display: flex;
+  margin-left: auto;
+  margin-top: auto;
+}
+
+.task__project {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}

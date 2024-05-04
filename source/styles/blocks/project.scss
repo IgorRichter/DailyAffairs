@@ -1,0 +1,89 @@
+.project {
+  cursor: pointer;
+  padding: 5px;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
+    border-radius: 8px;
+  }
+
+  &:hover .project__edit-wrapper,
+  &:focus-visible .project__edit-wrapper {
+    opacity: 1;
+  }
+
+  &--completed {
+    opacity: 0.5;
+    cursor: default;
+
+    & .project__edit-wrapper {
+      display: none;
+    }
+  }
+}
+
+.project__wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+.project__wrapper-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.project__edit-wrapper {
+  display: flex;
+  gap: 10px;
+  height: 15px;
+  opacity: 0;
+}
+
+.project__button {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.project__button-select {
+  border: 0;
+  background-color: $transparent;
+  padding: 0;
+  color: $basic-white;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+
+  &--edit {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($basic-gray, 0.5);
+    }
+  }
+}
+
+.project__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  width: 75%;
+  margin-right: 15px;
+  word-break: break-all;
+}
+
+.project__data-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project__rigthside {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}

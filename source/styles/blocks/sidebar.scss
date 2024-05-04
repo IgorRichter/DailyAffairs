@@ -2,7 +2,8 @@
   width: 300px;
   height: 100%;
   background-color: $background-color-2;
-  position: fixed;
+  position: absolute;
+  z-index: 10;
   top: 0;
   left: 0;
   transform: translateX(-100%);
@@ -56,7 +57,7 @@
   &::after {
     content: "";
     display: block;
-    background-image: url("../../icons/stack.svg#arrow-down");
+    background-image: url("../../icons/stack.svg#arrow");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 12px;

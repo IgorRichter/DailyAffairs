@@ -1,0 +1,51 @@
+.popup-project {
+  position: absolute;
+  z-index: 10;
+  top: 120%;
+  left: 0;
+  font-size: 14px;
+  background-color: #262829;
+  border-radius: 8px;
+  min-width: 180px;
+  padding: 10px 0;
+  cursor: default;
+}
+
+.popup-project__title {
+  margin-left: 10px;
+}
+
+.popup-project__list-empty {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.popup-project__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-project__item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+
+  &::before {
+    content: "";
+    display: block;
+    background-image: url("../../icons/stack.svg#add-project");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
+  }
+}

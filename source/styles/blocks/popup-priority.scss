@@ -1,0 +1,55 @@
+.popup-priority {
+  position: absolute;
+  z-index: 10;
+  top: 120%;
+  left: 0;
+  font-size: 14px;
+  background-color: #262829;
+  border-radius: 8px;
+  min-width: 180px;
+}
+
+.popup-priority__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-priority__item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+
+  &::before {
+    content: "";
+    display: block;
+    border-radius: 50%;
+    background-size: 24px;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+  }
+
+  &--red::before {
+    background-color: $priority1;
+  }
+
+  &--orange::before {
+    background-color: $priority2;
+  }
+
+  &--yellow::before {
+    background-color: $priority3;
+  }
+
+  &--none::before {
+    background-color: $transparent;
+    border: 1px solid $basic-white;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
+  }
+}

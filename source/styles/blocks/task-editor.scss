@@ -1,0 +1,128 @@
+.task-editor {
+  border: 1px solid rgba($basic-white, 0.3);
+  padding: 15px;
+
+  &:focus-within {
+    border: 1px solid rgba($basic-white, 0.8);
+  }
+}
+
+.task-editor__editing-area {
+  margin-bottom: 15px;
+}
+
+
+.task-editor__setting-btn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba($basic-white, 0.3);
+}
+
+.task-editor__control-btn {
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.task-editor__title-field {
+  font-size: 18px;
+}
+
+.task-editor__discription {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.task-editor__box {
+  position: relative;
+  display: flex;
+}
+
+.task-editor__calendar-label,
+.task-editor__priority-label,
+.task-editor__project-label {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 8px;
+  border: 1 solid $basic-white;
+  border-radius: 8px;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
+    border-radius: 8px;
+  }
+}
+
+.task-editor__priority-label {
+  &--priority1 {
+    border-color: $priority1;
+    color: $priority1;
+  }
+
+  &--priority2 {
+    border-color: $priority2;
+    color: $priority2;
+  }
+
+  &--priority3 {
+    border-color: $priority3;
+    color: $priority3;
+  }
+}
+
+.task-editor__input {
+  text-align: center;
+  cursor: pointer;
+  width: 80px;
+  border: 0;
+  background-color: $transparent;
+  color: $basic-white;
+  outline: 0;
+  text-overflow: ellipsis;
+
+  &--priority {
+    width: 100px;
+  }
+}
+
+.task-editor__popup {
+  display: none;
+
+  &--open {
+    display: block;
+  }
+}
+
+.task-editor__close-btn {
+  background-color: rgba($basic-gray, 0.6);
+  border-radius: 5px;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
+  }
+}
+
+.task-editor__submit-btn {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba($secondary-color, 0.8);
+
+  &:hover,
+  &:focus-visible {
+    background-color: $secondary-color;
+  }
+
+  &:disabled {
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($secondary-color, 0.8);
+    }
+  }
+}

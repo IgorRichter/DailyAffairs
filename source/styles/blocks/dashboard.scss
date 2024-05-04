@@ -1,0 +1,83 @@
+.dashboard {
+  padding: 15px;
+}
+
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.dashboard__header-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.dashboard__header-button {
+  border: 1px solid $basic-white;
+  border-radius: 8px;
+  background-color: $transparent;
+  color: $basic-white;
+  font-weight: 700;
+  padding: 0;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+.dashboard__select-wrapper {
+  display: flex;
+  margin-left: auto;
+  text-align: center;
+
+  &::before {
+    content: "";
+    display: block;
+    background-image: url("../../icons/stack.svg#sort");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+
+.dashboard__select-control {
+  border: 1px solid $basic-white;
+  border-radius: 3px;
+  background-color: $transparent;
+  color: $basic-white;
+  padding: 5px 10px;
+  line-height: 18px;
+  cursor: pointer;
+
+  &:hover{
+    color: $background-color;
+    background-color: $basic-white;
+  }
+}
+
+.dashboard__new-item {
+  &--disabled button { 
+    opacity: 0;
+    cursor: default;
+  }
+}
+
+.dashboard__new-task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 3px;
+  background-color: $transparent;
+  color: $basic-white;
+  padding: 5px 10px;
+  line-height: 18px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    color: $secondary-color;
+  }
+}

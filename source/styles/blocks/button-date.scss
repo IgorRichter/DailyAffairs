@@ -1,0 +1,60 @@
+.button-date {
+  display: flex;
+  align-items: center;
+}
+
+.button-date__title {
+  cursor: default;
+  padding: 0 10px;
+  border-left: 1px solid rgba($basic-white, 0.5);
+  border-right: 1px solid rgba($basic-white, 0.5);
+}
+
+.button-date__arrow {
+
+  &::before {
+    content: "";
+    display: block;
+    background-image: url("../../icons/stack.svg#arrow");
+    background-color: rgba($background-color, 0.1);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15px;
+    width: 20px;
+    height: 20px;
+    padding: 5px 5px;
+  }
+
+  
+
+  &--left {
+    border-radius: 8px 0 0 8px;
+  }
+
+  &--right {
+    border-radius: 0 8px 8px 0;
+  }
+
+  &--left::before {
+    transform: rotate(90deg);
+  }
+
+  &--right::before {
+    transform: rotate(270deg);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.5);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+
+    &:hover,
+    &:focus-visible {
+    background-color: unset;
+  }
+  }
+}
