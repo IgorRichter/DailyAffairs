@@ -39,13 +39,16 @@
 
 /* App */
 @import "./blocks/app-header.scss";
+@import "./blocks/app-main.scss";
 @import "./blocks/sidebar.scss";
 @import "./blocks/nav.scss";
 @import "./blocks/dropdown-menu.scss";
 @import "./blocks/exit.scss";
+@import "./blocks/setting-section.scss";
 @import "./blocks/dashboard.scss";
 @import "./blocks/button-date.scss";
 @import "./blocks/task.scss";
+@import "./blocks/new-item.scss";
 @import "./blocks/task-editor.scss";
 @import "./blocks/editor.scss";
 @import "./blocks/calendar.scss";

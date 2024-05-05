@@ -10,6 +10,14 @@
   &--open {
     display: block;
   }
+
+  @media (min-width: $desktop-width) {
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    position: static;
+    background-color: unset;
+  }
 }
 
 .dropdown-menu__item {
@@ -27,6 +35,10 @@
     width: 30px;
     height: 30px;
     margin-right: 10px;
+
+    @media (min-width: $desktop-width) {
+      margin-right: 0;
+    }
   }
     
   &--notification::before {
@@ -39,10 +51,20 @@
 
   &--language::before {
     background-image: url("../../icons/stack.svg#language-icon");
+
+    @media (min-width: $desktop-width) {
+      display: none;
+    }
   }
 
   &--theme::before {
     background-image: url("../../icons/stack.svg#theme-icon");
+  }
+
+  &--settings {
+    @media (min-width: $desktop-width) {
+      order: 2;
+    }
   }
 
   &--arrow {
@@ -52,6 +74,11 @@
     border: 0;
     color: $basic-white;
     cursor: pointer;
+
+    @media (min-width: $desktop-width) {
+      border-radius: 12px;
+      border: 1px solid $secondary-color;
+    }
   }
 
   &--arrow::after {
@@ -64,6 +91,15 @@
     height: 15px;
     margin-left: auto;
     background-image: url("../../icons/stack.svg#arrow");
+
+    @media (min-width: $desktop-width) {
+      background-image: url("../../icons/stack.svg#arrow-v2");
+      background-size: 10px;
+      transform: rotate(180deg);
+      width: 12px;
+      height: 8px;
+      margin-left: 10px;
+    }
   }
 
   &:hover,
@@ -71,11 +107,31 @@
     background-color: rgba($basic-gray, 0.3);
     border-radius: 8px;
   }
+
+  & span {
+    @media (min-width: $desktop-width) {
+      display: none;
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 5px;
+  }
 }
 
 .dropdown-menu__wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.dropdown-menu__submenu-wrapper {
+  @media (min-width: $desktop-width) {
+    position: absolute;
+    top: 120%;
+    left: 55px;
+    background-color: $background-color-2;
+    border-radius: 8px;
+  }
 }
 
 .dropdown-menu__submenu {
@@ -88,6 +144,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+
+    @media (min-width: $desktop-width) {
+      display: flex;
+      flex-direction: column;
+      gap: unset;
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -101,5 +168,15 @@
   &:focus-visible {
     background-color: $basic-white;
     color: #2d343b;
+
+    @media (min-width: $desktop-width) {
+      background-color: $basic-white;
+      color: #2d343b;
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    border: 0;
+    padding: 5px 15px;
   }
 }

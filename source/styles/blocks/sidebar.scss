@@ -21,6 +21,17 @@
   &--open .sidebar__bth-wrapper {
     margin-right: unset;
   }
+
+  @media (min-width: $tablet-width) {
+    width: 400px;
+  }
+
+  @media (min-width: $desktop-width) {
+    width: unset;
+    position: relative;
+    transform: unset;
+    background-color: $transparent;
+  }
 }
 
 .sidebar__nav {
@@ -34,6 +45,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 30px 15px 25px;
+
+  @media (min-width: $desktop-width) {
+    justify-content: end;
+    border-bottom: 1px solid rgba($basic-white, 0.5);
+    padding: 15px 20px;
+  }
 }
 
 .sidebar__user-nav {
@@ -63,34 +80,80 @@
     background-size: 12px;
     width: 15px;
     height: 15px;
+
+    @media (min-width: $desktop-width) {
+      display: none;
+    }
   }
 
   &:hover,
   &:focus-visible {
     background-color: rgba($basic-gray, 0.3);
     border-radius: 8px;
+
+    @media (min-width: $desktop-width) {
+      background-color: unset;
+      border-radius: unset;
+    }
   }
 
   &:active {
     transform: scale(0.9);
+
+    @media (min-width: $desktop-width) {
+      transform: unset;
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    justify-content: end;
+    cursor: default;
+  }
+}
+
+.sidebar__info {
+  @media (min-width: $desktop-width) {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
   }
 }
 
 .sidebar__email-info {
   display: none;
+
+  @media (min-width: $desktop-width) {
+    display: block;
+    font-size: 14px;
+  }
 }
 
 .sidebar__avatar {
   border-radius: 50%;
+
+  @media (min-width: $desktop-width) {
+    order: 1;
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .sidebar__dropdown-menu {
   position: relative;
+
+  @media (min-width: $desktop-width) {
+    order: -1;
+    margin-right: 70px;
+  }
 }
 
 .sidebar__bth-wrapper {
   display: flex;
   justify-content: end;
+
+  @media (min-width: $desktop-width) {
+    display: none;
+  }
 }
 
 .sidebar__button {
@@ -109,5 +172,19 @@
   &:focus-visible {
     background-color: rgba($basic-gray, 0.3);
     border-radius: 8px;
+  }
+}
+
+.sidebar__nav-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @media (min-width: $desktop-width) {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
   }
 }

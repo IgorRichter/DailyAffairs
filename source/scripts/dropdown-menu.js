@@ -7,6 +7,7 @@ const userButton = document.querySelector('.sidebar__user-button');
 
 toggleButton.addEventListener('click', () => {
   sidebar.classList.toggle('sidebar--open');
+  document.body.style.overflow = sidebar.classList.contains('sidebar--open') ? "hidden" : "auto";
 });
 
 userButton.addEventListener('click', () => {
@@ -20,6 +21,7 @@ dropDownMenuLun.addEventListener('click', () => {
 document.addEventListener('click', (event) => {
   if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
     sidebar.classList.remove('sidebar--open');
+    document.body.style.overflow = sidebar.classList.contains('sidebar--open') ? "hidden" : "auto";
   }
   
   if (!dropDownMenu.contains(event.target) && !userButton.contains(event.target)) {
