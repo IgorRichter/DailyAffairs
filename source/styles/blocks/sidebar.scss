@@ -181,10 +181,23 @@
   height: 100%;
 
   @media (min-width: $desktop-width) {
-    display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 500px;
+    width: 300px;
+    height: 100vh;
+    background-color: $background-color;
+    border-right: 1px solid rgba($basic-white, 0.5);
   }
+}
+
+.sidebar__logo {
+  display: none;
+
+  @media (min-width: $desktop-width) {
+    display: block;
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+  
 }

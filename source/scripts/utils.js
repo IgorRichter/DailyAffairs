@@ -7,4 +7,6 @@ const onDocumentKeydown = (callback) => (evt) => {
   }
 };
 
-export { isEscapeKey, onDocumentKeydown }
+const sidebar = document.querySelector('.sidebar');
+
+export { isEscapeKey, onDocumentKeydown, sidebar }

@@ -2,7 +2,22 @@
   @media (min-width: $tablet-width) {
     display: flex;
     flex-direction: column;
-    width: 700px;
-    margin: 0 auto;
+    width: 100%;
+    align-items: center;
+  }
+
+  @media (min-width: $desktop-width) {
+    align-items: center;
+    width: 100%;
+    padding-top: 50px;
+    padding-left: 300px;
+  }
+
+  & section {
+    display: none;
+  }
+
+  & section:first-child {
+    display: block;
   }
 }

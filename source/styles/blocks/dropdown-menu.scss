@@ -180,3 +180,11 @@
     padding: 5px 15px;
   }
 }
+
+.dropdown-menu__default-language {
+  display: none;
+
+  @media (min-width: $desktop-width) {
+    display: block;
+  }
+}

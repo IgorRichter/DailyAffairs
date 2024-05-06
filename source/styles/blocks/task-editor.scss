@@ -1,7 +1,16 @@
 .task-editor {
-  display: block;
+  display: none;
   border: 1px solid rgba($basic-white, 0.3);
   padding: 15px;
+  transition: opacity 0.5s ease;
+
+  &--visible {
+    display: block;
+  }
+
+  &--hidden {
+    opacity: 0;
+  }
 
   &:focus-within {
     border: 1px solid rgba($basic-white, 0.8);

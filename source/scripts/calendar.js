@@ -1,5 +1,3 @@
-const calendarControl = new CalendarControl();
-
 function CalendarControl() {
   const calendar = new Date();
   const calendarControl = {
@@ -278,4 +276,4 @@ function CalendarControl() {
   calendarControl.init();
 }
 
-
+export { CalendarControl };

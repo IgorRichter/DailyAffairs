@@ -10,6 +10,10 @@
   gap: 10px;
 }
 
+.nav__item {
+  cursor: pointer;
+}
+
 .nav__link {
   font-size: 24px;
   display: flex;

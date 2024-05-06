@@ -3,7 +3,16 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: calc(100vh - 124px);
+  height: calc(100vh - $max-mobile-header);
+
+  @media (min-width: $tablet-width) {
+    width: 70%;
+  }
+  
+  @media (min-width: $desktop-width) {
+    width: $max-width-editor;
+    height: calc(100vh - $max-desktop-header);
+  }
 }
 
 .projects__header {

@@ -11,7 +11,6 @@
     <link rel="apple-touch-icon" href="favicons/apple.png">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="styles/styles.css">
-    <script src="scripts/main.js" type="module" defer></script>
   </head>
   <body>
 
@@ -51,10 +50,13 @@
           </div>
         </header>
         <div class="sidebar__nav-wrapper">
+          <div class="sidebar__logo">
+            <img src="images/main-logo.svg" width="240" height="40" alt="Логотип DailyAffairs">
+          </div>
           <nav class="nav">
             <ul class="nav__list list">
               <li class="nav__item">
-                <a class="nav__link nav__link--active link" href="#">
+                <a class="nav__link nav__link--active link" data-section="dashboard">
                   <svg width="25" height="25" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#dashboard"></use>
                   </svg>
@@ -62,7 +64,7 @@
                 </a>
               </li>
               <li class="nav__item">
-                <a class="nav__link link" href="#">
+                <a class="nav__link link"  data-section="tasks">
                   <svg width="25" height="25" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#task"></use>
                   </svg>
@@ -70,7 +72,7 @@
                 </a>
               </li>
               <li class="nav__item">
-                <a class="nav__link link" href="#">
+                <a class="nav__link link" data-section="projects">
                   <svg width="25" height="25" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#project"></use>
                   </svg>
@@ -78,7 +80,7 @@
                 </a>
               </li>
               <li class="nav__item">
-                <a class="nav__link link" href="#">
+                <a class="nav__link link" data-section="calendar">
                   <svg width="25" height="25" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#calendar"></use>
                   </svg>
@@ -102,7 +104,7 @@
 
     <!-- Секция "Панель" -->
 
-      <section class="dashboard">
+      <section class="dashboard section" id="dashboard">
         <header class="dashboard__header">
           <div class="dashboard__header-wrapper">
             <button class="dashboard__header-button button-date" type="button">
@@ -163,76 +165,9 @@
                 </div>
               </li>
             </div>
-            <li class="dashboard__manager-item">
-              <form class="task-editor" action="https://httpbin.org/post" method="post">
-                <div class="task-editor__editing-area">
-                  <div class="task-editor__title-field">
-                    <textarea rows="1" class="editor" name="title_task" placeholder="Название"></textarea>
-                  </div>
-                  <div class="task-editor__discription">
-                    <textarea rows="1" class="editor" name="discription_task" placeholder="Описание"></textarea>
-                  </div>
-                </div>
-                <div class="task-editor__footer">
-                  <div class="task-editor__setting-btn">
-                    <div class="task-editor__box">
-                      <label class="task-editor__calendar-label">
-                        <svg width="15" height="15" aria-hidden="true" focusable="false">
-                          <use href="icons/stack.svg#calendar"></use>
-                        </svg>
-                        <input class="task-editor__input" type="text" id="dateInput" placeholder="Дата" name="data_task" readonly>
-                      </label>
-                      <div class="calendar"></div>
-                    </div>
-                    <div class="task-editor__box">
-                      <label class="task-editor__priority-label">
-                        <svg width="15" height="15" aria-hidden="true" focusable="false">
-                          <use href="icons/stack.svg#priority-task"></use>
-                        </svg>
-                        <input class="task-editor__input task-editor__input--priority" type="text" id="priorityInput"  name="priority_task" placeholder="Приоритет" readonly>
-                      </label>
-                      <div class="task-editor__popup popup-priority">
-                        <ul class="popup-priority__list list">
-                          <li class="popup-priority__item popup-priority__item--red">Срочно</li>
-                          <li class="popup-priority__item popup-priority__item--orange">Важно</li>
-                          <li class="popup-priority__item popup-priority__item--yellow">Второстепенно</li>
-                          <li class="popup-priority__item popup-priority__item--none">Без приоритета</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="task-editor__box">
-                      <label class="task-editor__project-label">
-                        <svg width="15" height="15" aria-hidden="true" focusable="false">
-                          <use href="icons/stack.svg#project"></use>
-                        </svg>
-                        <input class="task-editor__input" type="text" id="projectInput"  name="project_task" placeholder="Проект" readonly>
-                      </label>
-                      <div class="task-editor__popup popup-project">
-                        <span class="popup-project__title">Мои проекты:</span>
-                        <ul class="popup-project__list list">
-                          <span class="popup-project__list-empty">Список проектов пуст</span>
-                          <li class="popup-project__item">Учеба</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="task-editor__control-btn">
-                    <button type="button" class="task-editor__close-btn button" aria-label="Отменить">
-                      <svg width="20" height="20" aria-hidden="true" focusable="false">
-                        <use href="icons/stack.svg#close-button"></use>
-                      </svg>
-                    </button>
-                    <button type="button" class="task-editor__submit-btn button" aria-label="Добавить">
-                      <svg width="20" height="20" aria-hidden="true" focusable="false">
-                        <use href="icons/stack.svg#add_task"></use>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </li>
+            <li class="dashboard__manager-item manager-item"></li>
             <li class="dashboard__new-item new-item">
-              <button class="dashboard__new-task new-item__task">
+              <button class="dashboard__new-task new-item__task" type="button">
                 <svg width="15" height="15" aria-hidden="true" focusable="false">
                   <use href="icons/stack.svg#new-taks-icon"></use>
                 </svg>
@@ -245,7 +180,7 @@
 
       <!-- Секция "Задачи" -->
 
-      <section class="tasks" style="display: none;">
+      <section class="tasks section" id="tasks">
         <header class="tasks__header">
           <div class="tasks__header-wrapper">
             <button class="tasks__header-button tasks__header-button--active" type="button">Активные</button>
@@ -346,9 +281,9 @@
                 </div>
               </li>
             </div>
-            <li class="tasks__manager-item"></li>
+            <li class="tasks__manager-item manager-item"></li>
             <li class="tasks__new-item new-item">
-              <button class="tasks__new-task new-item__task">
+              <button class="tasks__new-task new-item__task" type="button">
                 <svg width="15" height="15" aria-hidden="true" focusable="false">
                   <use href="icons/stack.svg#new-taks-icon"></use>
                 </svg>
@@ -361,7 +296,7 @@
 
       <!-- Секция "Проекты" -->
 
-      <section class="projects" style="display: none;">
+      <section class="projects section" id="projects">
         <header class="projects__header">
           <div class="projects__header-wrapper">
             <button class="projects__header-button projects__header-button--active" type="button">Активные</button>
@@ -407,9 +342,9 @@
                 </div>
               </li>
             </div>
-            <li class="projects__manager-item"></li>
+            <li class="projects__manager-item manager-item"></li>
             <li class="projects__new-item new-item">
-              <button class="new-item__task">
+              <button class="new-item__task" type="button">
                 <svg width="15" height="15" aria-hidden="true" focusable="false">
                   <use href="icons/stack.svg#new-taks-icon"></use>
                 </svg>
@@ -418,6 +353,12 @@
             </li>
           </ul>
         </div>
+      </section>
+
+      <!-- Секция "Календарь" -->
+
+      <section class="calendar-section section" id="calendar">
+        <div class="in-dev">Секция в разработке</div>
       </section>
     </main>
     
@@ -605,5 +546,6 @@
       </li>
      </template>
 
+     <script src="scripts/main.js" type="module" defer></script>
   </body>
 </html>
