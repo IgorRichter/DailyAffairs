@@ -1,1 +1,1 @@
-var o=e=>e.key==="Escape",c=e=>n=>{o(n)&&(n.preventDefault(),e())};export{o as isEscapeKey,c as onDocumentKeydown};
+var c=e=>e.key==="Escape",n=e=>o=>{c(o)&&(o.preventDefault(),e())},s=document.querySelector(".sidebar");export{c as isEscapeKey,n as onDocumentKeydown,s as sidebar};
