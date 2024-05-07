@@ -1,18 +1,23 @@
-import { sidebar } from './utils.js';
+import { sidebar, newItems } from './const.js';
 
 const sidebarItem = document.querySelectorAll('.nav__item a');
 const sidebarLinks = document.querySelectorAll('.nav__link');
 const headerTitle = document.querySelector('.app-header__title');
-let taskEditorForm = document.querySelector('.task-editor');
+const managerItems = document.querySelectorAll('.manager-item');
+
 
 sidebarItem.forEach(link => {
     link.addEventListener('click', event => {
 
       event.preventDefault();
-      
-      if (taskEditorForm) {
-        taskEditorForm.remove();
-      }
+
+      managerItems.forEach(managerItem => {
+          managerItem.innerHTML = '';
+      });
+
+      newItems.forEach(newItem => {
+          newItem.classList.remove('new-item--disabled');
+      });
 
       sidebarLinks.forEach(link => {
           link.classList.remove('nav__link--active');

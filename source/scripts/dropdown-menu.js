@@ -1,4 +1,4 @@
-import { sidebar } from './utils.js';
+import { sidebar } from './const.js';
 
 const toggleButton = document.querySelector('.sidebar__button');
 const dropDownMenu = document.querySelector('.dropdown-menu');
