@@ -1,4 +1,6 @@
 .new-item {
+  margin-bottom: 40px;
+
   &--disabled button { 
     opacity: 0;
     cursor: default;

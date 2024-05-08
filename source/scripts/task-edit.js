@@ -1,6 +1,17 @@
 import { onDocumentKeydown } from './utils.js';
 import { CalendarControl } from './calendar.js';
 
+function attachEventToTextarea() {
+  const textareas = document.querySelectorAll('.editor');
+
+  textareas.forEach(textarea => {
+    textarea.addEventListener('input', () => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    });
+});
+}
+
 function attachEventToPriorityInput() {
   const textareas = document.querySelectorAll('.editor');
   const dateInput = document.getElementById("dateInput");
@@ -11,15 +22,9 @@ function attachEventToPriorityInput() {
   const priorityItems = document.querySelectorAll('.popup-priority__item');
   const projectInput = document.getElementById('projectInput');
   const popupProject = document.querySelector('.popup-project');
-  const projectItems = document.querySelectorAll('.popup-project__item');
+  const popupProjectList = document.querySelector('.popup-project__list');
+  const emptyMessage = document.querySelector('.popup-project__list-empty');
   const calendarControl = new CalendarControl();
-  
-  textareas.forEach(textarea => {
-      textarea.addEventListener('input', () => {
-          textarea.style.height = 'auto';
-          textarea.style.height = textarea.scrollHeight + 'px';
-      });
-  });
   
   function togglePopup(popup, openFunction, closeFunction) {
     return function(event) {
@@ -59,14 +64,14 @@ function attachEventToPriorityInput() {
     });
   });
   
-  projectItems.forEach(function(item) {
-    item.addEventListener('click', function() {
-      const projectValue = item.textContent.trim();
-      projectInput.value = projectValue;
-      projectPopupClose();
-    });
-  });
-  
+  const today = new Date();
+  const day = today.getDate();
+  const monthNames = ["января", "февраля", "марта", "апреля", "мая", "июня",
+                        "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  const monthIndex = today.getMonth();
+  const month = monthNames[monthIndex];
+  dateInput.value = `${day} ${month}`;
+
   dateInput.addEventListener("click", () => {
     (calendar.style.display === "block") ? calendarClose() : calendarOpen();
   });
@@ -111,6 +116,7 @@ function attachEventToPriorityInput() {
   
   function projectPopupOpen() {
     openPopup(popupProject, closeProjectPopuprHandler);
+    addProjectItems();
   }
   
   function projectPopupClose() {
@@ -127,6 +133,45 @@ function attachEventToPriorityInput() {
     calendar.style.display = "none";
     document.removeEventListener('keydown', closeCalendarHandler);
   }
+
+  function addProjectItems() {
+    const projectListWrapper = document.querySelector('.projects__list-wrapper');
+    const projects = projectListWrapper.querySelectorAll('.project__title');
+
+    popupProjectList.innerHTML = '';
+
+    projects.forEach(project => {
+        const projectItem = document.createElement('li');
+        projectItem.classList.add('popup-project__item');
+
+        // Создание span для текста и добавление его в элемент li
+        const span = document.createElement('span');
+        span.textContent = project.textContent.trim();
+        projectItem.appendChild(span);
+
+        // Добавление элемента li в список
+        popupProjectList.appendChild(projectItem);
+
+        projectItem.addEventListener('click', function() {
+            const projectValue = projectItem.textContent.trim();
+            projectInput.value = projectValue;
+            projectPopupClose();
+        });
+    });
+
+    checkProjectList();
+}
+
+function checkProjectList() {
+    const projectListItems = document.querySelectorAll('.popup-project__list li');
+
+    if (projectListItems.length === 0) {
+        emptyMessage.style.display = 'block';
+    } else {
+        emptyMessage.style.display = 'none';
+    }
+}
+
   
   document.addEventListener("click", function(event) {
     if (!popupPriority.contains(event.target) && event.target !== priorityInput) {
@@ -143,4 +188,4 @@ function attachEventToPriorityInput() {
   });
 }
 
-export { attachEventToPriorityInput };
+export { attachEventToPriorityInput, attachEventToTextarea };
