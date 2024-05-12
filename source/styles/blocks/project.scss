@@ -1,6 +1,6 @@
 .project {
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
 
   &:hover,
   &:focus-visible {
@@ -19,6 +19,16 @@
 
     & .project__edit-wrapper {
       display: none;
+    }
+  }
+
+  &--edit {
+    background-color: rgba($secondary-color, 0.3);
+    border-radius: 8px;
+
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($secondary-color, 0.3);
     }
   }
 }

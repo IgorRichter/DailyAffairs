@@ -16,6 +16,8 @@
 
 .popup-project__title {
   margin-left: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .popup-project__list-empty {
@@ -56,5 +58,25 @@
   & span {
     text-overflow: ellipsis;
     overflow: hidden;
+  }
+}
+
+.popup-project_btn-reset {
+  margin-left: auto;
+  margin-right: 5px;
+  box-sizing: content-box;
+  padding: 5px;
+  width: 12px;
+  height: 12px;
+  background-color: $transparent;
+  background-image: url("../../icons/stack.svg#close-button");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+  border-radius: 8px;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba($basic-gray, 0.3);
   }
 }

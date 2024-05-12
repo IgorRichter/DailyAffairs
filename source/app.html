@@ -115,56 +115,15 @@
           </div>
           <div class="dashboard__select-wrapper">
             <select class="dashboard__select-control" aria-label="Сортировка">
-              <option value="cheap">По умолчанию</option>
-              <option value="popular">По приоритету</option>
-              <option value="expensive">По названию</option>
+              <option value="default">По умолчанию</option>
+              <option value="priority">По приоритету</option>
+              <option value="name">По названию</option>
             </select>
           </div>
         </header>
         <div class="dashboard__tasks setting-section">
           <ul class="list-with-tasks list">
-            <div class="list-with-tasks__wrapper">
-              <li class="task">
-                <div class="task__wrapper">
-                  <div class="task__info-wrapper">
-                    <h2 class="task__title title title--sm">Заголовок задачи</h2>
-                    <p class="task__discription">Описание задачи</p>
-                    <div class="task__data-wrapper">
-                      <svg width="15" height="15" aria-hidden="true" focusable="false">
-                        <use href="icons/stack.svg#calendar"></use>
-                      </svg>
-                      <span class="task__data">23 мая</span>
-                    </div>
-                  </div>
-                  <div class="task__rigthside">
-                    <div class="task__button">
-                      <div class="task__edit-wrapper">
-                        <button class="task__button-select task__button-select--edit" title="Редактировать задачу">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#edit"></use>
-                          </svg>
-                        </button>
-                        <button class="task__button-select task__button-select--edit" title="Удалить задачу">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#delete"></use>
-                          </svg>
-                        </button>
-                      </div>
-                      <button class="task__button-select">
-                        <span class="task__circle">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false" title="Завершить задачу">
-                            <use href="icons/stack.svg#checkmark"></use>
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-                    <div class="task__project-wrapper">
-                      <p class="task__project">Проект</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </div>
+            <div class="list-with-tasks__wrapper"></div>
             <li class="dashboard__manager-item manager-item"></li>
             <li class="dashboard__new-item new-item">
               <button class="dashboard__new-task new-item__task" type="button">
@@ -189,98 +148,16 @@
           </div>
           <div class="tasks__select-wrapper">
             <select class="tasks__select-control" aria-label="Сортировка">
-              <option value="cheap">По умолчанию</option>
-              <option value="popular">По приоритету</option>
-              <option value="expensive">По названию</option>
-              <option value="expensive">По дате</option>
+              <option value="default">По умолчанию</option>
+              <option value="priority">По приоритету</option>
+              <option value="name">По названию</option>
+              <option value="date">По дате</option>
             </select>
           </div>
         </header>
         <div class="tasks__tasks setting-section">
           <ul class="list-with-tasks list">
-            <div class="list-with-tasks__wrapper">
-              <li class="task">
-                <div class="task__wrapper">
-                  <div class="task__info-wrapper">
-                    <span class="task__info-expired">Задача просрочена</span>
-                    <h2 class="task__title title title--sm">Заголовок задачи</h2>
-                    <p class="task__discription">Описание задачи</p>
-                    <div class="task__data-wrapper">
-                      <svg width="15" height="15" aria-hidden="true" focusable="false">
-                        <use href="icons/stack.svg#calendar"></use>
-                      </svg>
-                      <span class="task__data">23 мая</span>
-                    </div>
-                  </div>
-                  <div class="task__rigthside">
-                    <div class="task__button">
-                      <div class="task__edit-wrapper">
-                        <button class="task__button-select task__button-select--edit" title="Редактировать задачу">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#edit"></use>
-                          </svg>
-                        </button>
-                        <button class="task__button-select task__button-select--edit" title="Удалить задачу">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#delete"></use>
-                          </svg>
-                        </button>
-                      </div>
-                      <button class="task__button-select">
-                        <span class="task__circle">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false" title="Завершить задачу">
-                            <use href="icons/stack.svg#checkmark"></use>
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-                    <div class="task__project-wrapper">
-                      <p class="task__project">Проект</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="task task--completed">
-                <div class="task__wrapper">
-                  <div class="task__info-wrapper">
-                    <h2 class="task__title title title--sm"><s class="strike-title">Заголовок задачи</s></h2>
-                    <p class="task__discription">Описание задачи</p>
-                    <div class="task__data-wrapper">
-                      <svg width="15" height="15" aria-hidden="true" focusable="false">
-                        <use href="icons/stack.svg#calendar"></use>
-                      </svg>
-                      <span class="task__data">23 мая</span>
-                    </div>
-                  </div>
-                  <div class="task__rigthside">
-                    <div class="task__button">
-                      <div class="task__edit-wrapper">
-                        <button class="task__button-select task__button-select--edit" title="Редактировать задачу">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#edit"></use>
-                          </svg>
-                        </button>
-                        <button class="task__button-select task__button-select--edit" title="Удалить задачу">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#delete"></use>
-                          </svg>
-                        </button>
-                      </div>
-                      <button class="task__button-select">
-                        <span class="task__circle">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false" title="Завершить задачу">
-                            <use href="icons/stack.svg#checkmark"></use>
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-                    <div class="task__project-wrapper">
-                      <p class="task__project">Проект</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </div>
+            <div class="list-with-tasks__wrapper"></div>
             <li class="tasks__manager-item manager-item"></li>
             <li class="tasks__new-item new-item">
               <button class="tasks__new-task new-item__task" type="button">
@@ -305,43 +182,7 @@
         </header>
         <div class="projects__tasks setting-section">
           <ul class="projects__list list">
-            <div class="projects__list-wrapper">
-              <li class="project">
-                <div class="project__wrapper">
-                  <div class="project__wrapper-icon">
-                    <svg width="35" height="35" aria-hidden="true" focusable="false">
-                      <use href="icons/stack.svg#project"></use>
-                    </svg>
-                  </div>
-                  <div class="project__info-wrapper">
-                    <h2 class="project__title title title--sm">Заголовок проекта</h2>
-                    <p class="project__discription">Описание проекта</p>
-                  </div>
-                  <div class="project__rigthside">
-                    <div class="project__button">
-                      <div class="project__edit-wrapper">
-                        <button class="project__button-select project__button-select--edit" title="Редактировать проект">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#edit"></use>
-                          </svg>
-                        </button>
-                        <button class="project__button-select project__button-select--edit" title="Удалить проект">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#delete"></use>
-                          </svg>
-                        </button>
-                        <button class="project__button-select project__button-select--edit" title="Завершить проект">
-                          <svg width="15" height="15" aria-hidden="true" focusable="false">
-                            <use href="icons/stack.svg#complete-project"></use>
-                          </svg>
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </div>
+            <div class="projects__list-wrapper"></div>
             <li class="projects__manager-item manager-item"></li>
             <li class="projects__new-item new-item">
               <button class="new-item__task" type="button">
@@ -409,7 +250,7 @@
                 <input class="task-editor__input" type="text" id="projectInput"  name="project_task" placeholder="Проект" readonly>
               </label>
               <div class="task-editor__popup popup-project">
-                <span class="popup-project__title">Мои проекты:</span>
+                <span class="popup-project__title">Мои проекты:<button type="button" class="popup-project_btn-reset button"></span>
                 <span class="popup-project__list-empty">Список проектов пуст</span>
                 <ul class="popup-project__list list"></ul>
               </div>
@@ -477,18 +318,18 @@
           <div class="task__rigthside">
             <div class="task__button">
               <div class="task__edit-wrapper">
-                <button class="task__button-select task__button-select--edit" title="Редактировать задачу">
+                <button class="task__button-select task__button-select--edit button-edit-task" title="Редактировать задачу">
                   <svg width="15" height="15" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#edit"></use>
                   </svg>
                 </button>
-                <button class="task__button-select task__button-select--edit" title="Удалить задачу">
+                <button class="task__button-select task__button-select--edit button-delete-task" title="Удалить задачу">
                   <svg width="15" height="15" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#delete"></use>
                   </svg>
                 </button>
               </div>
-              <button class="task__button-select">
+              <button class="task__button-select button-complete-task">
                 <span class="task__circle">
                   <svg width="15" height="15" aria-hidden="true" focusable="false" title="Завершить задачу">
                     <use href="icons/stack.svg#checkmark"></use>
@@ -521,12 +362,12 @@
           <div class="project__rigthside">
             <div class="project__button">
               <div class="project__edit-wrapper">
-                <button class="project__button-select project__button-select--edit" title="Редактировать проект">
+                <button class="project__button-select project__button-select--edit button-edit-project" title="Редактировать проект">
                   <svg width="15" height="15" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#edit"></use>
                   </svg>
                 </button>
-                <button class="project__button-select project__button-select--edit" title="Удалить проект">
+                <button class="project__button-select project__button-select--edit button-delete-project" title="Удалить проект">
                   <svg width="15" height="15" aria-hidden="true" focusable="false">
                     <use href="icons/stack.svg#delete"></use>
                   </svg>

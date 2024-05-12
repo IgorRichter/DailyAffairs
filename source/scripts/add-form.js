@@ -1,13 +1,9 @@
 import { attachEventToPriorityInput, attachEventToTextarea } from './task-edit.js';
-import { newItems } from './const.js';
-
-const MAX_LENGTH_TITLE = 100;
-const MAX_LENGTH_DISC = 500;
-
-const TextError = {
-    TITLE: 'Длина заголовка не должна превышать 100 символов.',
-    DISC: 'Длина описания не должна превышать 500 символов.'
-};
+import { deleteTask, editTask, deleteProject, editProject } from './edit-form.js';
+import { generateUniqueId, getTodayDate, validateInput, updateSubmitButtonAvailability, generateUniqueOrder } from './utils.js';
+import { newItems, MAX_LENGTH_TITLE, MAX_LENGTH_DISC, TextError } from './const.js';
+import { updateTasksVisibility } from './data-sort.js';
+import { updateExpiredTasks, updateTasksList, setupCompleteTaskButtons } from './task-types-sort.js';
 
 const taskTemplate = document.querySelector('#task');
 const projectTemplate = document.querySelector('#project');
@@ -46,43 +42,22 @@ newItems.forEach(newItem => {
                 titleField.parentNode.appendChild(errorFieldTitle);
                 descriptionField.parentNode.appendChild(errorFieldDescription);
 
-                function validateInput(inputElement, maxLength, errorElement, errorMessage) {
-                    const inputValue = inputElement.value.trim();
-
-                    if (inputValue.length > maxLength) {
-                        errorElement.textContent = errorMessage;
-                        inputElement.classList.add('has-error');
-                        submitButton.disabled = true;
-                    } else {
-                        errorElement.textContent = '';
-                        inputElement.classList.remove('has-error');
-                        submitButton.disabled = false;
-                    }
-                }
-
-                function updateSubmitButtonAvailability() {
-                    const isTitleFieldFilled = titleField.value.trim() !== '';
-                    const isTitleFieldValid = !titleField.classList.contains('has-error');
-                    const isDescriptionFieldValid = !descriptionField.classList.contains('has-error');
-                    submitButton.disabled = !isTitleFieldFilled || !isTitleFieldValid || !isDescriptionFieldValid;
-                }
-
                 titleField.addEventListener('input', () => {
-                    validateInput(titleField, MAX_LENGTH_TITLE, errorFieldTitle, TextError.TITLE);
-                    updateSubmitButtonAvailability();
+                  validateInput(titleField, MAX_LENGTH_TITLE, errorFieldTitle, TextError.TITLE, submitButton);
+                  updateSubmitButtonAvailability(titleField, descriptionField, submitButton);
                 });
 
                 descriptionField.addEventListener('input', () => {
-                    validateInput(descriptionField, MAX_LENGTH_DISC, errorFieldDescription, TextError.DISC);
-                    updateSubmitButtonAvailability();
+                    validateInput(descriptionField, MAX_LENGTH_DISC, errorFieldDescription, TextError.DISC, submitButton);
+                    updateSubmitButtonAvailability(titleField, descriptionField, submitButton);
                 });
 
-                updateSubmitButtonAvailability();
+                updateSubmitButtonAvailability(titleField, descriptionField, submitButton);
 
                 // Добавление обработчика события для кнопки "Добавить задачу"
                 submitButton.addEventListener('click', () => {
-                    validateInput(titleField, MAX_LENGTH_TITLE, errorFieldTitle, TextError.TITLE);
-                    validateInput(descriptionField, MAX_LENGTH_DISC, errorFieldDescription, TextError.DISC);
+                    validateInput(titleField, MAX_LENGTH_TITLE, errorFieldTitle, TextError.TITLE, submitButton);
+                    validateInput(descriptionField, MAX_LENGTH_DISC, errorFieldDescription, TextError.DISC, submitButton);
 
                     if (titleField.classList.contains('has-error') || descriptionField.classList.contains('has-error')) {
                         return;
@@ -101,15 +76,25 @@ newItems.forEach(newItem => {
                             projectDescription.textContent = description;
 
                             list.querySelector('.projects__list-wrapper').appendChild(project);
+                            
+                            editProject();
+                            deleteProject();
                         });
                     } else {
+                        const taskId = generateUniqueId();
+                        const taskOrder = generateUniqueOrder();
+
                         tasksLists.forEach(list => {
                             const task = taskTemplate.content.cloneNode(true);
+                            const taskItem = task.querySelector('.task');
+                            taskItem.dataset.id = taskId;
+                            taskItem.dataset.order = taskOrder;
                             const taskTitle = task.querySelector('.task__title');
                             const taskDescription = task.querySelector('.task__discription');
                             const taskDate = task.querySelector('.task__data');
                             const taskProject = task.querySelector('.task__project');
                             const taskCircle = task.querySelector('.task__circle');
+                            const priorityLabel = document.querySelector('.task-editor__priority-label');
                             let date = editorForm.querySelector('[name="data_task"]').value;
                             let priority = editorForm.querySelector('[name="priority_task"]').value;
                             let project = editorForm.querySelector('[name="project_task"]').value;
@@ -130,16 +115,28 @@ newItems.forEach(newItem => {
                                 taskCircle.classList.add('task__circle--priority3');
                             }
 
+                            priorityLabel.classList.remove('task-editor__priority-label--priority1', 'task-editor__priority-label--priority2', 'task-editor__priority-label--priority3');
+                            
                             list.querySelector('.list-with-tasks__wrapper').appendChild(task);
+                            
+                            editTask();
+                            deleteTask();
                         });
                     }
 
                     editorForm.reset();
-                    updateSubmitButtonAvailability();
+                    updateSubmitButtonAvailability(titleField, descriptionField, submitButton);
+                    updateTasksVisibility();
+                    updateExpiredTasks();
+
+                    const selectedButton = document.querySelector('.tasks__header-button--active').textContent.trim();
+                    updateTasksList(selectedButton);
+
+                    setupCompleteTaskButtons();
                 });
 
                 if (!isProjectSection) {
-                    attachEventToPriorityInput();
+                    attachEventToPriorityInput(getTodayDate());
                 }
 
                 attachEventToTextarea();

@@ -9,20 +9,20 @@ function attachEventToTextarea() {
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
     });
-});
+  });
 }
-
-function attachEventToPriorityInput() {
-  const textareas = document.querySelectorAll('.editor');
+  
+function attachEventToPriorityInput(taskDate) {
   const dateInput = document.getElementById("dateInput");
   const calendar = document.querySelector(".calendar");
   const priorityInput = document.getElementById('priorityInput');
-  const priorityLabel = document.querySelector('.task-editor__priority-label');
   const popupPriority = document.querySelector('.popup-priority');
   const priorityItems = document.querySelectorAll('.popup-priority__item');
+  const priorityLabel = document.querySelector('.task-editor__priority-label');
   const projectInput = document.getElementById('projectInput');
   const popupProject = document.querySelector('.popup-project');
   const popupProjectList = document.querySelector('.popup-project__list');
+  const popupProjectButton = document.querySelector('.popup-project_btn-reset');
   const emptyMessage = document.querySelector('.popup-project__list-empty');
   const calendarControl = new CalendarControl();
   
@@ -37,6 +37,11 @@ function attachEventToPriorityInput() {
   
   projectInput.addEventListener('click', togglePopup(popupProject, projectPopupOpen, projectPopupClose));
   
+  popupProjectButton.addEventListener('click', () => {
+    projectInput.value = '';
+    projectPopupClose();
+  });
+
   priorityItems.forEach(function(item) {
     item.addEventListener('click', function() {
       
@@ -63,14 +68,8 @@ function attachEventToPriorityInput() {
       priorityPopupClose();
     });
   });
-  
-  const today = new Date();
-  const day = today.getDate();
-  const monthNames = ["января", "февраля", "марта", "апреля", "мая", "июня",
-                        "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-  const monthIndex = today.getMonth();
-  const month = monthNames[monthIndex];
-  dateInput.value = `${day} ${month}`;
+
+  dateInput.value = taskDate;
 
   dateInput.addEventListener("click", () => {
     (calendar.style.display === "block") ? calendarClose() : calendarOpen();
@@ -144,12 +143,10 @@ function attachEventToPriorityInput() {
         const projectItem = document.createElement('li');
         projectItem.classList.add('popup-project__item');
 
-        // Создание span для текста и добавление его в элемент li
         const span = document.createElement('span');
         span.textContent = project.textContent.trim();
         projectItem.appendChild(span);
 
-        // Добавление элемента li в список
         popupProjectList.appendChild(projectItem);
 
         projectItem.addEventListener('click', function() {
@@ -160,9 +157,9 @@ function attachEventToPriorityInput() {
     });
 
     checkProjectList();
-}
+  }
 
-function checkProjectList() {
+  function checkProjectList() {
     const projectListItems = document.querySelectorAll('.popup-project__list li');
 
     if (projectListItems.length === 0) {
@@ -170,7 +167,7 @@ function checkProjectList() {
     } else {
         emptyMessage.style.display = 'none';
     }
-}
+  }
 
   
   document.addEventListener("click", function(event) {

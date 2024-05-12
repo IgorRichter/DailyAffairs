@@ -1,5 +1,6 @@
 .task {
   cursor: pointer;
+  padding: 5px 5px 0 5px;
 
   &::after {
     content: "";
@@ -23,6 +24,20 @@
     & .task__edit-wrapper {
       display: none;
     }
+  }
+
+  &--edit {
+    background-color: rgba($secondary-color, 0.5);
+    border-radius: 8px;
+
+    &:hover,
+    &:focus-visible {
+      background-color: rgba($secondary-color, 0.5);
+    }
+  }
+
+  &--hidden {
+    display: none;
   }
 }
 
