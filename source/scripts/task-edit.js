@@ -34,13 +34,28 @@ function attachEventToPriorityInput(taskDate) {
   }
   
   priorityInput.addEventListener('click', togglePopup(popupPriority, priorityPopupOpen, priorityPopupClose));
-  
-  projectInput.addEventListener('click', togglePopup(popupProject, projectPopupOpen, projectPopupClose));
-  
+
+  if (!projectInput.closest('.list-in-project')) {
+    projectInput.addEventListener('click', togglePopup(popupProject, projectPopupOpen, projectPopupClose));
+  } else {
+    const projectTitle = document.querySelector('.projects-task').dataset.project;
+    projectInput.value = projectTitle;
+  }
+
   popupProjectButton.addEventListener('click', () => {
     projectInput.value = '';
+
+    const editorForm = document.querySelector('.task-editor');
+    const taskId = editorForm.dataset.taskId;
+
+    const taskItem = document.querySelector(`.task[data-id="${taskId}"]`);
+    if (taskItem) {
+      delete taskItem.dataset.project;
+    }
+
     projectPopupClose();
   });
+
 
   priorityItems.forEach(function(item) {
     item.addEventListener('click', function() {

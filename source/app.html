@@ -174,12 +174,6 @@
       <!-- Секция "Проекты" -->
 
       <section class="projects section" id="projects">
-        <header class="projects__header">
-          <div class="projects__header-wrapper">
-            <button class="projects__header-button projects__header-button--active" type="button">Активные</button>
-            <button class="projects__header-button" type="button">Завершенные</button>
-          </div>
-        </header>
         <div class="projects__tasks setting-section">
           <ul class="projects__list list">
             <div class="projects__list-wrapper"></div>
@@ -196,6 +190,39 @@
         </div>
       </section>
 
+      <section class="projects-task tasks section">
+        <header class="tasks__header">
+          <div class="tasks__header-wrapper">
+            <button class="tasks__header-button button-back" type="button" title="Назад">
+              <svg width="20" height="20" aria-hidden="true" focusable="false">
+                <use href="icons/stack.svg#go-back"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="tasks__select-wrapper">
+            <select class="tasks__select-control projects-task-control" aria-label="Сортировка">
+              <option value="default">По умолчанию</option>
+              <option value="priority">По приоритету</option>
+              <option value="name">По названию</option>
+              <option value="date">По дате</option>
+            </select>
+          </div>
+        </header>
+        <div class="tasks__tasks setting-section">
+          <ul class="list-with-tasks list list-in-project">
+            <div class="list-with-tasks__wrapper"></div>
+            <li class="tasks__manager-item manager-item"></li>
+            <li class="tasks__new-item new-item">
+              <button class="tasks__new-task new-item__task" type="button">
+                <svg width="15" height="15" aria-hidden="true" focusable="false">
+                  <use href="icons/stack.svg#new-taks-icon"></use>
+                </svg>
+                Добавить задачу
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
       <!-- Секция "Календарь" -->
 
       <section class="calendar-section section" id="calendar">

@@ -4,6 +4,7 @@ import { generateUniqueId, getTodayDate, validateInput, updateSubmitButtonAvaila
 import { newItems, MAX_LENGTH_TITLE, MAX_LENGTH_DISC, TextError } from './const.js';
 import { updateTasksVisibility } from './data-sort.js';
 import { updateExpiredTasks, updateTasksList, setupCompleteTaskButtons } from './task-types-sort.js';
+import { navigateToProjectTasks, navigateBackToProjects } from './project-section.js';
 
 const taskTemplate = document.querySelector('#task');
 const projectTemplate = document.querySelector('#project');
@@ -76,7 +77,15 @@ newItems.forEach(newItem => {
                             projectDescription.textContent = description;
 
                             list.querySelector('.projects__list-wrapper').appendChild(project);
+
+                            const projectItems = document.querySelectorAll('.project__info-wrapper');
+                            projectItems.forEach(item => {
+                              item.addEventListener('click', navigateToProjectTasks);
+                            });
                             
+                            const backButton = document.querySelector('.button-back');
+                            backButton.addEventListener('click', navigateBackToProjects);
+
                             editProject();
                             deleteProject();
                         });
@@ -105,7 +114,9 @@ newItems.forEach(newItem => {
                             if (!date) {
                               taskDate.textContent = 'Без срока';
                             }
+
                             taskProject.textContent = project;
+                            taskItem.dataset.project = project;
 
                             if (priority === "Срочно") {
                                 taskCircle.classList.add('task__circle--priority1');
@@ -129,9 +140,12 @@ newItems.forEach(newItem => {
                     updateTasksVisibility();
                     updateExpiredTasks();
 
-                    const selectedButton = document.querySelector('.tasks__header-button--active').textContent.trim();
-                    updateTasksList(selectedButton);
-
+                    const selectedButtonElement = document.querySelector('.tasks__header-button--active');
+                    if (selectedButtonElement) {
+                        const selectedButton = selectedButtonElement.textContent.trim();
+                        updateTasksList(selectedButton);
+                    }
+                    
                     setupCompleteTaskButtons();
                 });
 

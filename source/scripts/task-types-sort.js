@@ -118,8 +118,11 @@ function uncompleteTask(taskElement) {
       otherSvg.querySelector('use').setAttribute('href', 'icons/stack.svg#checkmark');
   });
 
-  const selectedButton = document.querySelector('.tasks__header-button--active').textContent.trim();
-  updateTasksList(selectedButton);
+  const activeButton = document.querySelector('.tasks__header-button--active');
+  if (activeButton) {
+    const selectedButton = activeButton.textContent.trim();
+    updateTasksList(selectedButton);
+  }
   updateExpiredTasks();
 }
 
@@ -148,7 +151,8 @@ function updateExpiredTasks() {
               expiredInfo.textContent = 'Задача просрочена';
               infoWrapper.insertBefore(expiredInfo, infoWrapper.firstChild);
           }
-          if (document.querySelector('.tasks__header-button--active').textContent !== "Просроченные") {
+          const activeButtonElement = document.querySelector('.tasks__header-button--active');
+          if (activeButtonElement && activeButtonElement.textContent !== "Просроченные") {
               task.classList.add('task--hidden');
           }
       } else {

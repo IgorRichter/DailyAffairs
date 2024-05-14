@@ -1,8 +1,10 @@
 import { parseDate } from './utils.js';
 
-const selectControlDashboard = document.querySelector('.dashboard__select-control');
 const dashboardList = document.querySelector('.dashboard .list-with-tasks__wrapper');
 const tasksList = document.querySelector('.tasks .list-with-tasks__wrapper');
+const projectTasksList = document.querySelector('.projects-task .list-with-tasks__wrapper');
+
+const selectControlDashboard = document.querySelector('.dashboard__select-control');
 
 selectControlDashboard.addEventListener('change', function () {
     const selectedValue = selectControlDashboard.value;
@@ -29,6 +31,24 @@ selectControlTasks.addEventListener('change', function () {
         sortByDate(tasksList);
     } else {
         sortByDataOrder(tasksList);
+    }
+});
+
+
+
+const selectControlProjectTasks = document.querySelector('.projects-task-control');
+
+selectControlProjectTasks.addEventListener('change', function () {
+    const selectedValue = selectControlProjectTasks.value;
+
+    if (selectedValue === 'priority') {
+        sortByPriority(projectTasksList);
+    } else if (selectedValue === 'name') {
+        sortByName(projectTasksList);
+    } else if (selectedValue === 'date') {
+        sortByDate(projectTasksList);
+    } else {
+        sortByDataOrder(projectTasksList);
     }
 });
 

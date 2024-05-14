@@ -51,8 +51,6 @@ function editTemplate(buttonSelector, itemSelector, editorTemplateSelector, item
         titleField.value = title;
         descriptionField.value = description;
 
-        
-
         errorFieldTitle.classList.add('task-editor__error');
         errorFieldDescription.classList.add('task-editor__error');
         titleField.parentNode.appendChild(errorFieldTitle);
@@ -98,6 +96,7 @@ function editTemplate(buttonSelector, itemSelector, editorTemplateSelector, item
               task.querySelector('.task__discription').textContent = updatedDescription;
               task.querySelector('.task__data').textContent = updatedDate;
               task.querySelector('.task__project').textContent = updatedProject;
+              task.dataset.project = updatedProject;
 
               const taskCircle = task.querySelector('.task__circle');
               taskCircle.classList.remove('task__circle--priority1', 'task__circle--priority2', 'task__circle--priority3');
@@ -120,8 +119,11 @@ function editTemplate(buttonSelector, itemSelector, editorTemplateSelector, item
 
           updateTasksVisibility();
           updateExpiredTasks();
-          const selectedButton = document.querySelector('.tasks__header-button--active').textContent.trim();
-          updateTasksList(selectedButton);
+          const selectedButtonElement = document.querySelector('.tasks__header-button--active');
+          if (selectedButtonElement) {
+              const selectedButton = selectedButtonElement.textContent.trim();
+              updateTasksList(selectedButton);
+          }
         });
 
         const managerItem = item.closest('.list, .projects__list').querySelector('.manager-item');
