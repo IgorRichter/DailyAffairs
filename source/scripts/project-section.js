@@ -1,4 +1,5 @@
 import { newItems } from './const.js';
+import { updateExpiredTasks } from './task-types-sort.js';
 
 function navigateToProjectTasks(event) {
   const projectSection = document.querySelector('.projects');

@@ -37,19 +37,57 @@ function updateTasksList(selectedButton) {
   });
 }
 
+function applyCompletedTaskClassToAllLists(taskId) {
+  const taskElements = document.querySelectorAll(`.task[data-id="${taskId}"]`);
+  taskElements.forEach(taskElement => {
+    completeTask(taskElement);
+  });
+}
+
+function applyCompletedTaskClass() {
+  const completedTasks = loadCompletedTasks();
+
+  completedTasks.forEach(taskId => {
+      applyCompletedTaskClassToAllLists(taskId);
+  });
+}
+
+function saveCompletedTasks(completedTasks) {
+  localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+}
+
+function loadCompletedTasks() {
+  const completedTasksString = localStorage.getItem('completedTasks');
+  return completedTasksString ? JSON.parse(completedTasksString) : [];
+}
 
 function completeTask(taskElement) {
   const taskTitle = taskElement.querySelector('.task__title');
   const taskId = taskElement.dataset.id;
-  
+
   taskElement.classList.add('task--completed');
   const strikeElement = document.createElement('s');
   strikeElement.textContent = taskTitle.textContent;
   taskTitle.textContent = '';
   taskTitle.appendChild(strikeElement);
-  
+
   const svg = taskElement.querySelector('.task__circle svg');
   svg.querySelector('use').setAttribute('href', 'icons/stack.svg#arrow-back');
+
+  let completedTasks = loadCompletedTasks();
+  let expiredTasks = loadExpiredTasks();
+  expiredTasks = expiredTasks.filter(task => task !== taskId);
+  saveExpiredTasks(expiredTasks);
+  completedTasks.push(taskId);
+  saveCompletedTasks(completedTasks);
+
+  if (!completedTasks.includes(taskId)) {
+    completedTasks.push(taskId);
+    saveCompletedTasks(completedTasks);
+  }
+  completedTasks.push(taskId);
+
+  saveCompletedTasks(completedTasks);
 
   taskElement.style.transition = 'opacity 0.3s ease';
   taskElement.style.opacity = '0';
@@ -107,6 +145,24 @@ function uncompleteTask(taskElement) {
   svg.querySelector('use').setAttribute('href', 'icons/stack.svg#checkmark');
 
   const taskId = taskElement.dataset.id;
+
+  let completedTasks = loadCompletedTasks();
+
+  completedTasks = completedTasks.filter(task => task !== taskId);
+  saveCompletedTasks(completedTasks);
+
+  let expiredTasks = loadExpiredTasks();
+  expiredTasks = expiredTasks.filter(task => task !== taskId);
+  saveExpiredTasks(expiredTasks);
+
+  const index = completedTasks.indexOf(taskId);
+    if (index !== -1) {
+        completedTasks.splice(index, 1);
+        saveCompletedTasks(completedTasks);
+    }
+  completedTasks = completedTasks.filter(task => task !== taskId);
+  saveCompletedTasks(completedTasks);
+
   const otherListTasks = document.querySelectorAll('.list-with-tasks__wrapper .task[data-id="' + taskId + '"]');
   otherListTasks.forEach(otherTask => {
       const otherTaskTitle = otherTask.querySelector('.task__title s');
@@ -123,7 +179,30 @@ function uncompleteTask(taskElement) {
     const selectedButton = activeButton.textContent.trim();
     updateTasksList(selectedButton);
   }
+
   updateExpiredTasks();
+}
+
+
+function applyExpiredTaskClass() {
+  const expiredTasks = loadExpiredTasks();
+  const tasks = document.querySelectorAll('.task');
+  tasks.forEach(task => {
+      const taskId = task.dataset.id;
+      if (expiredTasks.includes(taskId)) {
+        updateExpiredTasks();
+      }
+  });
+}
+
+
+function saveExpiredTasks(expiredTasks) {
+  localStorage.setItem('expiredTasks', JSON.stringify(expiredTasks));
+}
+
+function loadExpiredTasks() {
+  const expiredTasksString = localStorage.getItem('expiredTasks');
+  return expiredTasksString ? JSON.parse(expiredTasksString) : [];
 }
 
 function updateExpiredTasks() {
@@ -131,7 +210,10 @@ function updateExpiredTasks() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  let expiredTasks = [];
+
   tasks.forEach(task => {
+      const taskId = task.dataset.id;
       const taskDataText = task.querySelector('.task__data').textContent.trim();
       
       if (taskDataText === "Без срока") {
@@ -155,6 +237,8 @@ function updateExpiredTasks() {
           if (activeButtonElement && activeButtonElement.textContent !== "Просроченные") {
               task.classList.add('task--hidden');
           }
+
+          expiredTasks.push(taskId);
       } else {
           task.classList.remove('task--expired');
           const expiredInfo = task.querySelector('.task__info-expired');
@@ -163,7 +247,9 @@ function updateExpiredTasks() {
           }
       }
   });
+
+  saveExpiredTasks(expiredTasks);
 }
 
 
-export { updateExpiredTasks, updateTasksList, setupCompleteTaskButtons}
+export { updateExpiredTasks, updateTasksList, setupCompleteTaskButtons, applyExpiredTaskClass, applyCompletedTaskClass}

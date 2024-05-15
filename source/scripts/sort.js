@@ -34,8 +34,6 @@ selectControlTasks.addEventListener('change', function () {
     }
 });
 
-
-
 const selectControlProjectTasks = document.querySelector('.projects-task-control');
 
 selectControlProjectTasks.addEventListener('change', function () {

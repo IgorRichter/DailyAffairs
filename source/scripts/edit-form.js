@@ -3,10 +3,31 @@ import { MAX_LENGTH_TITLE, MAX_LENGTH_DISC, TextError } from './const.js';
 import { validateInput, updateSubmitButtonAvailability } from './utils.js';
 import { updateTasksVisibility } from './data-sort.js';
 import { updateExpiredTasks, updateTasksList } from './task-types-sort.js';
+import { loadFromLocalStorage, saveToLocalStorage } from './app.js';
+
+// function deleteItem(deleteButtonSelector, parentSelector, idAttribute = null) {
+//   const deleteButtons = document.querySelectorAll(deleteButtonSelector);
+
+//   deleteButtons.forEach(button => {
+//     button.addEventListener('click', () => {
+//       const item = button.closest(parentSelector);
+//       if (item) {
+//         if (idAttribute) {
+//           const itemId = item.dataset.id;
+//           const itemsToDelete = document.querySelectorAll(`${parentSelector}[${idAttribute}="${itemId}"]`);
+//           itemsToDelete.forEach(itemToDelete => {
+//             itemToDelete.remove();
+//           });
+//         } else {
+//           item.remove();
+//         }
+//       }
+//     });
+//   });
+// }
 
 function deleteItem(deleteButtonSelector, parentSelector, idAttribute = null) {
   const deleteButtons = document.querySelectorAll(deleteButtonSelector);
-
   deleteButtons.forEach(button => {
     button.addEventListener('click', () => {
       const item = button.closest(parentSelector);
@@ -17,12 +38,60 @@ function deleteItem(deleteButtonSelector, parentSelector, idAttribute = null) {
           itemsToDelete.forEach(itemToDelete => {
             itemToDelete.remove();
           });
+
+          deleteItemFromLocalStorage(itemId, true);
         } else {
           item.remove();
+          deleteItemFromLocalStorage(item.dataset.id, false);
         }
       }
     });
   });
+}
+
+function deleteItemFromLocalStorage(itemId, isTask) {
+  const items = isTask ? loadFromLocalStorage('tasks') : loadFromLocalStorage('projects');
+
+  const updatedItems = items.filter(item => item.id !== itemId);
+
+  if (isTask) {
+    saveToLocalStorage('tasks', updatedItems);
+  } else {
+    saveToLocalStorage('projects', updatedItems);
+  }
+}
+
+function updateTaskInLocalStorage(taskId, updatedTitle, updatedDescription, updatedDate, updatedPriority, updatedProject) {
+  const tasks = loadFromLocalStorage('tasks');
+  const updatedTasks = tasks.map(task => {
+    if (task.id === taskId) {
+      return {
+        ...task,
+        title: updatedTitle,
+        description: updatedDescription,
+        date: updatedDate,
+        priority: updatedPriority,
+        project: updatedProject
+      };
+    }
+    return task;
+  });
+  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+}
+
+function updateProjectInLocalStorage(projectId, updatedTitle, updatedDescription) {
+  const projects = loadFromLocalStorage('projects');
+  const updatedProjects = projects.map(project => {
+    if (project.id === projectId) {
+      return {
+        ...project,
+        title: updatedTitle,
+        description: updatedDescription
+      };
+    }
+    return project;
+  });
+  localStorage.setItem('projects', JSON.stringify(updatedProjects));
 }
 
 function editTemplate(buttonSelector, itemSelector, editorTemplateSelector, itemTitleSelector, itemDescriptionSelector, isTask) {
@@ -108,6 +177,11 @@ function editTemplate(buttonSelector, itemSelector, editorTemplateSelector, item
                   taskCircle.classList.add('task__circle--priority3');
               }
             });
+            updateTaskInLocalStorage(taskId, updatedTitle, updatedDescription, updatedDate, updatedPriority, updatedProject);
+          } else {
+            const updatedTitle = titleField.value.trim();
+            const updatedDescription = descriptionField.value.trim();
+            updateProjectInLocalStorage(taskId, updatedTitle, updatedDescription);
           }
 
           editorForm.classList.add('task-editor--hidden');
