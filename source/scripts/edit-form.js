@@ -5,27 +5,6 @@ import { updateTasksVisibility } from './data-sort.js';
 import { updateExpiredTasks, updateTasksList } from './task-types-sort.js';
 import { loadFromLocalStorage, saveToLocalStorage } from './app.js';
 
-// function deleteItem(deleteButtonSelector, parentSelector, idAttribute = null) {
-//   const deleteButtons = document.querySelectorAll(deleteButtonSelector);
-
-//   deleteButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-//       const item = button.closest(parentSelector);
-//       if (item) {
-//         if (idAttribute) {
-//           const itemId = item.dataset.id;
-//           const itemsToDelete = document.querySelectorAll(`${parentSelector}[${idAttribute}="${itemId}"]`);
-//           itemsToDelete.forEach(itemToDelete => {
-//             itemToDelete.remove();
-//           });
-//         } else {
-//           item.remove();
-//         }
-//       }
-//     });
-//   });
-// }
-
 function deleteItem(deleteButtonSelector, parentSelector, idAttribute = null) {
   const deleteButtons = document.querySelectorAll(deleteButtonSelector);
   deleteButtons.forEach(button => {

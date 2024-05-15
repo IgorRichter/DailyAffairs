@@ -101,6 +101,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 12px;
+  background-color: $background-color;
+
+  &:hover,
+  &:focus-visible {
+    outline: 1px solid $secondary-color;
+  }
 
   & video {
     border-radius: 12px;
@@ -111,7 +118,8 @@
     }
     
     @media (min-width: $desktop-width) {
-      height: 600;
+      width: 600;
+      height: 500;
     }
   }
 }
@@ -121,8 +129,18 @@
 
   & img {
     width: 100%;
-    height: auto;
     display: block;
+    object-fit: contain cover;
+    padding: 10px;
     border-radius: 12px;
+    outline: 1px solid $secondary-color;
+
+    @media (min-width: $tablet-width) {
+      height: 450;
+    }
+
+    @media (min-width: $desktop-width) {
+      height: 650;
+    }
   }
 }
