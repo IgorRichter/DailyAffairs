@@ -138,7 +138,6 @@ function completeTask(taskElement) {
   expiredTasks = expiredTasks.filter(task => task !== taskId);
   saveExpiredTasks(expiredTasks);
 
-  // Удаляем повторяющиеся строки и сохраняем только уникальные значения
   if (!completedTasks.includes(taskId)) {
       completedTasks.push(taskId);
       saveCompletedTasks(completedTasks);
@@ -302,26 +301,73 @@ function loadExpiredTasks() {
   return expiredTasksString ? JSON.parse(expiredTasksString) : [];
 }
 
+// function updateExpiredTasks() {
+//   const tasks = tasksWrapper.querySelectorAll('.task');
+//   const today = new Date();
+//   today.setHours(0, 0, 0, 0);
+
+//   let expiredTasks = [];
+
+//   tasks.forEach(task => {
+//       const taskId = task.dataset.id;
+//       const taskDataText = task.querySelector('.task__data').textContent.trim();
+      
+//       if (taskDataText === "Без срока") {
+//           task.classList.add('task--hidden');
+//           return;
+//       }
+      
+//       const [, day, month] = taskDataText.match(/(\d+)\s+(\S+)/);
+//       const taskDate = new Date(today.getFullYear(), getMonthIndex(month), parseInt(day));
+
+//       if (taskDate.getTime() < today.getTime()) {
+//           task.classList.add('task--expired');
+//           const infoWrapper = task.querySelector('.task__info-wrapper');
+//           if (!infoWrapper.querySelector('.task__info-expired')) {
+//               const expiredInfo = document.createElement('span');
+//               expiredInfo.classList.add('task__info-expired');
+//               expiredInfo.textContent = 'Задача просрочена';
+//               infoWrapper.insertBefore(expiredInfo, infoWrapper.firstChild);
+//           }
+//           const activeButtonElement = document.querySelector('.tasks__header-button--active');
+//           if (activeButtonElement && activeButtonElement.textContent !== "Просроченные") {
+//               task.classList.add('task--hidden');
+//           }
+
+//           expiredTasks.push(taskId);
+//       } else {
+//           task.classList.remove('task--expired');
+//           const expiredInfo = task.querySelector('.task__info-expired');
+//           if (expiredInfo) {
+//               expiredInfo.remove();
+//           }
+//       }
+//   });
+
+//   saveExpiredTasks(expiredTasks);
+// }
+
 function updateExpiredTasks() {
   const tasks = tasksWrapper.querySelectorAll('.task');
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   let expiredTasks = [];
+  const completedTasks = loadCompletedTasks();
 
   tasks.forEach(task => {
       const taskId = task.dataset.id;
       const taskDataText = task.querySelector('.task__data').textContent.trim();
-      
+
       if (taskDataText === "Без срока") {
           task.classList.add('task--hidden');
           return;
       }
-      
+
       const [, day, month] = taskDataText.match(/(\d+)\s+(\S+)/);
       const taskDate = new Date(today.getFullYear(), getMonthIndex(month), parseInt(day));
 
-      if (taskDate.getTime() < today.getTime()) {
+      if (taskDate.getTime() < today.getTime() && !completedTasks.includes(taskId)) {
           task.classList.add('task--expired');
           const infoWrapper = task.querySelector('.task__info-wrapper');
           if (!infoWrapper.querySelector('.task__info-expired')) {
@@ -347,6 +393,5 @@ function updateExpiredTasks() {
 
   saveExpiredTasks(expiredTasks);
 }
-
 
 export { updateExpiredTasks, updateTasksList, setupCompleteTaskButtons, applyExpiredTaskClass, applyCompletedTaskClass}
