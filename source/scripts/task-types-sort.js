@@ -61,6 +61,65 @@ function loadCompletedTasks() {
   return completedTasksString ? JSON.parse(completedTasksString) : [];
 }
 
+// function completeTask(taskElement) {
+//   const taskTitle = taskElement.querySelector('.task__title');
+//   const taskId = taskElement.dataset.id;
+
+//   taskElement.classList.add('task--completed');
+//   const strikeElement = document.createElement('s');
+//   strikeElement.textContent = taskTitle.textContent;
+//   taskTitle.textContent = '';
+//   taskTitle.appendChild(strikeElement);
+
+//   const svg = taskElement.querySelector('.task__circle svg');
+//   svg.querySelector('use').setAttribute('href', 'icons/stack.svg#arrow-back');
+
+//   let completedTasks = loadCompletedTasks();
+//   let expiredTasks = loadExpiredTasks();
+//   expiredTasks = expiredTasks.filter(task => task !== taskId);
+//   saveExpiredTasks(expiredTasks);
+//   completedTasks.push(taskId);
+//   saveCompletedTasks(completedTasks);
+
+//   if (!completedTasks.includes(taskId)) {
+//     completedTasks.push(taskId);
+//     saveCompletedTasks(completedTasks);
+//   }
+//   completedTasks.push(taskId);
+
+//   saveCompletedTasks(completedTasks);
+
+//   taskElement.style.transition = 'opacity 0.3s ease';
+//   taskElement.style.opacity = '0';
+//   setTimeout(() => {
+//       taskElement.classList.add('task--completed', 'task--hidden');
+//       taskElement.style.transition = '';
+//       taskElement.style.opacity = '';
+//   }, 300);
+
+//   const otherListTasks = document.querySelectorAll('.list-with-tasks__wrapper .task[data-id="' + taskId + '"]');
+//   otherListTasks.forEach(otherTask => {
+//       otherTask.classList.add('task--completed');
+//       const otherTaskTitle = otherTask.querySelector('.task__title');
+//       if (!otherTaskTitle.querySelector('s')) {
+//           const otherStrikeElement = document.createElement('s');
+//           otherStrikeElement.textContent = otherTaskTitle.textContent;
+//           otherTaskTitle.textContent = '';
+//           otherTaskTitle.appendChild(otherStrikeElement);
+//       }
+//       const otherSvg = otherTask.querySelector('.task__circle svg');
+//       otherSvg.querySelector('use').setAttribute('href', 'icons/stack.svg#arrow-back');
+
+//       if (otherTask.classList.contains('task--expired')) {
+//         otherTask.classList.remove('task--expired');
+//         const otherExpiredInfo = otherTask.querySelector('.task__info-expired');
+//         if (otherExpiredInfo) {
+//             otherExpiredInfo.remove();
+//         }
+//     }
+//   });
+// }
+
 function completeTask(taskElement) {
   const taskTitle = taskElement.querySelector('.task__title');
   const taskId = taskElement.dataset.id;
@@ -78,16 +137,12 @@ function completeTask(taskElement) {
   let expiredTasks = loadExpiredTasks();
   expiredTasks = expiredTasks.filter(task => task !== taskId);
   saveExpiredTasks(expiredTasks);
-  completedTasks.push(taskId);
-  saveCompletedTasks(completedTasks);
 
+  // Удаляем повторяющиеся строки и сохраняем только уникальные значения
   if (!completedTasks.includes(taskId)) {
-    completedTasks.push(taskId);
-    saveCompletedTasks(completedTasks);
+      completedTasks.push(taskId);
+      saveCompletedTasks(completedTasks);
   }
-  completedTasks.push(taskId);
-
-  saveCompletedTasks(completedTasks);
 
   taskElement.style.transition = 'opacity 0.3s ease';
   taskElement.style.opacity = '0';
@@ -111,14 +166,15 @@ function completeTask(taskElement) {
       otherSvg.querySelector('use').setAttribute('href', 'icons/stack.svg#arrow-back');
 
       if (otherTask.classList.contains('task--expired')) {
-        otherTask.classList.remove('task--expired');
-        const otherExpiredInfo = otherTask.querySelector('.task__info-expired');
-        if (otherExpiredInfo) {
-            otherExpiredInfo.remove();
-        }
-    }
+          otherTask.classList.remove('task--expired');
+          const otherExpiredInfo = otherTask.querySelector('.task__info-expired');
+          if (otherExpiredInfo) {
+              otherExpiredInfo.remove();
+          }
+      }
   });
 }
+
 
 function setupCompleteTaskButtons() {
   const buttonsComplete = document.querySelectorAll('.button-complete-task');
@@ -147,21 +203,12 @@ function uncompleteTask(taskElement) {
   const taskId = taskElement.dataset.id;
 
   let completedTasks = loadCompletedTasks();
-
   completedTasks = completedTasks.filter(task => task !== taskId);
   saveCompletedTasks(completedTasks);
 
   let expiredTasks = loadExpiredTasks();
   expiredTasks = expiredTasks.filter(task => task !== taskId);
   saveExpiredTasks(expiredTasks);
-
-  const index = completedTasks.indexOf(taskId);
-    if (index !== -1) {
-        completedTasks.splice(index, 1);
-        saveCompletedTasks(completedTasks);
-    }
-  completedTasks = completedTasks.filter(task => task !== taskId);
-  saveCompletedTasks(completedTasks);
 
   const otherListTasks = document.querySelectorAll('.list-with-tasks__wrapper .task[data-id="' + taskId + '"]');
   otherListTasks.forEach(otherTask => {
@@ -176,12 +223,62 @@ function uncompleteTask(taskElement) {
 
   const activeButton = document.querySelector('.tasks__header-button--active');
   if (activeButton) {
-    const selectedButton = activeButton.textContent.trim();
-    updateTasksList(selectedButton);
+      const selectedButton = activeButton.textContent.trim();
+      updateTasksList(selectedButton);
   }
 
   updateExpiredTasks();
 }
+
+
+// function uncompleteTask(taskElement) {
+//   const taskTitle = taskElement.querySelector('.task__title s');
+//   if (taskTitle) {
+//       taskTitle.parentNode.textContent = taskTitle.textContent;
+//   }
+//   taskElement.classList.remove('task--completed');
+
+//   const svg = taskElement.querySelector('.task__circle svg');
+//   svg.querySelector('use').setAttribute('href', 'icons/stack.svg#checkmark');
+
+//   const taskId = taskElement.dataset.id;
+
+//   let completedTasks = loadCompletedTasks();
+
+//   completedTasks = completedTasks.filter(task => task !== taskId);
+//   saveCompletedTasks(completedTasks);
+
+//   let expiredTasks = loadExpiredTasks();
+//   expiredTasks = expiredTasks.filter(task => task !== taskId);
+//   saveExpiredTasks(expiredTasks);
+
+//   const index = completedTasks.indexOf(taskId);
+//     if (index !== -1) {
+//         completedTasks.splice(index, 1);
+//         saveCompletedTasks(completedTasks);
+//     }
+//   completedTasks = completedTasks.filter(task => task !== taskId);
+//   saveCompletedTasks(completedTasks);
+
+//   const otherListTasks = document.querySelectorAll('.list-with-tasks__wrapper .task[data-id="' + taskId + '"]');
+//   otherListTasks.forEach(otherTask => {
+//       const otherTaskTitle = otherTask.querySelector('.task__title s');
+//       if (otherTaskTitle) {
+//           otherTaskTitle.parentNode.textContent = otherTaskTitle.textContent;
+//       }
+//       otherTask.classList.remove('task--completed');
+//       const otherSvg = otherTask.querySelector('.task__circle svg');
+//       otherSvg.querySelector('use').setAttribute('href', 'icons/stack.svg#checkmark');
+//   });
+
+//   const activeButton = document.querySelector('.tasks__header-button--active');
+//   if (activeButton) {
+//     const selectedButton = activeButton.textContent.trim();
+//     updateTasksList(selectedButton);
+//   }
+
+//   updateExpiredTasks();
+// }
 
 
 function applyExpiredTaskClass() {
